@@ -16,11 +16,7 @@ function Bear() {
     };
    }
 
-   function start() {
-    //create bear
-    bear=new Bear();
-
-   }
+  
 
    // Handle keyboad events
 // to move the bear
@@ -46,30 +42,15 @@ function moveBear(e) {
 
    function start() {
     //create bear
-    bear = new Bear();  
+    bear = new Bear();
+    // Add an event listener to the keypress event.
     document.addEventListener("keydown", moveBear, false);
-
+    //create new array for bees
+    bees = new Array();
+    //create bees
+    makeBees();
    }
 
-   this.fitBounds = function() {
-    let parent = this.htmlElement.parentElement;
-    let iw = this.htmlElement.offsetWidth;
-    let ih = this.htmlElement.offsetHeight;
-    let l = parent.offsetLeft;
-    let t = parent.offsetTop;
-    let w = parent.offsetWidth;
-    let h = parent.offsetHeight;
-    if (this.x < 0) this.x = 0;
-    if (this.x > w - iw) this.x = w - iw;
-    if (this.y < 0) this.y = 0;
-    if (this.y > h - ih) this.y = h - ih;
-    };
-
-    this.move = function(xDir, yDir) {
-        this.fitBounds(); //we add this instruction to keep bear within board
-        this.x += this.dBear * xDir;
-        this.y += this.dBear * y
-    }
     this.move = function(xDir, yDir) {
         this.fitBounds(); //we add this instruction to keep bear within board
         this.x += this.dBear * xDir;
@@ -87,13 +68,9 @@ function moveBear(e) {
         this.di;
         }
 
-        this.display = function() {
-            //adjust position of bee and display it
-            this.fitBounds();//add this to adjust to bounds
-            this.htmlElement.style.left = this.x + "px";
-            this.htmlElement.style.top = this.y + "px";
-            this.htmlElement.style.display = "block";
-            };
+    }
+
+        
          
             this.display = function() {
                 //adjust position of bee and display it
@@ -121,12 +98,7 @@ function moveBear(e) {
                 this.y = h - ih;
                 };
 
-                this.move = function(xDir, yDir) {
-                    this.fitBounds(); //we add this instruction to keep bear within board
-                    this.x += this.dBear * xDir;
-                    this.y += this.dBear * yDir;
-                    this.display();
-                    };
+             
 
                  class Bee {
                     constructor(beeNumber) {
@@ -145,14 +117,17 @@ function moveBear(e) {
                     this.display();
                     };
 
+                
+
                     this.display = function() {
                         //adjust position of bee and display it
                         this.fitBounds();//add this to adjust to bounds
                         this.htmlElement.style.left = this.x + "px";
                         this.htmlElement.style.top = this.y + "px";
                         this.htmlElement.style.display = "block";
-                        };
-                        this.fitBounds = function() {
+                    };
+
+                    this.fitBounds = function() {
                         //check and make sure the bees stays in the board space
                         let parent = this.htmlElement.parentElement;
                         let iw = this.htmlElement.offsetWidth;
@@ -170,11 +145,11 @@ function moveBear(e) {
                         if (this.y > h - ih)
                         this.y = h - ih;
                         ;
-                        }
+                    }
                     
                         
 
-                        function createBeeImg(wNum) {
+                    function createBeeImg(wNum) {
                             //get dimension and position of board div
                             let boardDiv = document.getElementById("board");
                             let boardDivW = boardDiv.offsetWidth;
@@ -223,27 +198,8 @@ function moveBear(e) {
                     }
                 }
                 
-                function start() {
-                    //create bear
-                    bear = new Bear();
-                    // Add an event listener to the keypress event.
-                    document.addEventListener("keydown", moveBear, false);
-                    //create new array for bees
-                    bees = new Array();
-                    //create bees
-                    makeBees();
-                   }
-                   
-                   function moveBees() {
-                    //get speed input field value
-                    let speed = document.getElementById("speedBees").value;
-                    //move each bee to a random location
-                    for (let i = 0; i < bees.length; i++) {
-                    let dx = getRandomInt(2 * speed) - speed;
-                    let dy = getRandomInt(2 * speed) - speed;
-                    bees[i].move(dx, dy);
-                    }
-                   }
+                
+              
 
                    function updateBees() { // update loop for game
                     //move the bees randomly
@@ -316,11 +272,13 @@ function moveBear(e) {
                     document.getElementById("duration").innerHTML = longestDuration;
                     }
                    }
+                }
+            }
+        
                    
-                   
 
 
 
 
 
-               }
+               
